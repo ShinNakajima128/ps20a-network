@@ -2,12 +2,14 @@
 using UnityEngine.UI;
 // Photon 用の名前空間を参照する
 using Photon.Pun;
+using Photon.Realtime;
+using ExitGames.Client.Photon;  // EventData を使うため
 
 /// <summary>
 /// ホッケーゲームのゲームを管理するコンポーネント。
 /// 二人プレイを前提としている。三人以上で同時にプレイするようにしたい場合は設計し直す必要がある。
 /// </summary>
-public class HockeyGamemanager : MonoBehaviour
+public class HockeyGamemanager : MonoBehaviour, IOnEventCallback
 {
     /// <summary>パックのプレハブ名</summary>
     [SerializeField] string m_packPrefabName = "ResourcePrefabName";
@@ -15,8 +17,6 @@ public class HockeyGamemanager : MonoBehaviour
     [SerializeField] Transform m_packSpawnPoint = null;
     /// <summary>画面に文字を表示するための Text</summary>
     [SerializeField] Text m_console = null;
-    /// <summary>ゲームのプレイ時間</summary>
-    [SerializeField] float m_gameTime = 90f; 
     /// <summary>ゲームの状態</summary>
     HockeyGameState m_state = HockeyGameState.Initializing;
 
@@ -46,12 +46,10 @@ public class HockeyGamemanager : MonoBehaviour
                 case HockeyGameState.Player1Serve:
                     SpawnPack(1);
                     m_state = HockeyGameState.InGame;
-                    CountStart();
                     break;
                 case HockeyGameState.Player2Serve:
                     SpawnPack(2);
                     m_state = HockeyGameState.InGame;
-                    CountStart();
                     break;
                 default:
                     break;
@@ -59,18 +57,11 @@ public class HockeyGamemanager : MonoBehaviour
         }
     }
 
-    void CountStart()
+    void IOnEventCallback.OnEvent(EventData photonEvent)
     {
-        bool isStarted = true;
-        
-        if (isStarted) m_gameTime -= Time.deltaTime;
 
-        if (m_gameTime <= 0)
-        {
-            isStarted = false;
-            m_state = HockeyGameState.Initializing;
-        }
     }
+
     /// <summary>
     /// パックを出現させる
     /// </summary>
