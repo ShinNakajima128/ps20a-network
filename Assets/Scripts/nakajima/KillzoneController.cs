@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 // Photon 用の名前空間を参照する
 using Photon.Pun;
+using UnityEngine.UI;
 
 /// <summary>
 /// ホッケーゲームでゴール地域を制御するコンポーネント。
