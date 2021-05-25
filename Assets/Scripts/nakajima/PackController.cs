@@ -27,7 +27,7 @@ public class PackController : MonoBehaviour
         {
             // フラグをたててパックをサーブする
             m_isStarted = true;
-            m_rb.velocity = this.transform.up * m_speed;
+            m_rb.velocity = this.transform.right * m_speed;
         }
     }
 }

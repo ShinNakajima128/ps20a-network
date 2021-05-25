@@ -120,4 +120,5 @@ public enum HockeyGameState
     Player2Serve,
     Player1Serve,
     InGame,
+    GameSet
 }
