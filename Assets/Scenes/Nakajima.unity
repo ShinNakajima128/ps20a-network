@@ -969,7 +969,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1050058501
 Transform:
   m_ObjectHideFlags: 0
@@ -1628,6 +1628,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1050058501}
     m_Modifications:
+    - target: {fileID: 4710005742100070665, guid: 599796368cdda1a4fb45f806803e31f4,
+        type: 3}
+      propertyPath: m_speed
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 4710005742100070675, guid: 599796368cdda1a4fb45f806803e31f4,
         type: 3}
       propertyPath: m_Name
@@ -1687,6 +1692,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710005742100070676, guid: 599796368cdda1a4fb45f806803e31f4,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710005742100070676, guid: 599796368cdda1a4fb45f806803e31f4,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 599796368cdda1a4fb45f806803e31f4, type: 3}
