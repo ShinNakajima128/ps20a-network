@@ -4,7 +4,7 @@ using Photon.Pun;
 
 /// <summary>
 /// ホッケーゲームのパドルを制御するコンポーネント
-/// キー入力により左右に動く
+/// キー入力により上下に動く
 /// </summary>
 public class PaddleController : MonoBehaviour
 {
@@ -31,9 +31,18 @@ public class PaddleController : MonoBehaviour
     /// </summary>
     void Move()
     {
+        Vector2 dir = new Vector2();
         float h = Input.GetAxisRaw("Horizontal");
-
-        Vector2 dir = (Vector2.right * h).normalized;
+        float v = Input.GetAxisRaw("Vertical");
+        if (h != 0)
+        {
+            dir = (Vector2.up * h).normalized;
+        }
+        else if (v != 0)
+        {
+            dir = (Vector2.up * v).normalized;        
+        }
         m_rb.velocity = dir * m_moveSpeed;
+
     }
 }
