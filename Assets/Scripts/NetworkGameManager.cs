@@ -11,6 +11,8 @@ public class NetworkGameManager : MonoBehaviourPunCallbacks // Photon Realtime �
     [SerializeField] string m_playerPrefabName = "Prefab";
     /// <summary>プレイヤーを生成する場所を示すアンカーのオブジェクト</summary>
     [SerializeField] Transform[] m_spawnPositions = default;
+    /// <summary>HockeyのGamaManager</summary>
+    [SerializeField] HockeyGamemanager m_hockeyGamemanager = default;
 
     private void Awake()
     {
@@ -202,6 +204,12 @@ public class NetworkGameManager : MonoBehaviourPunCallbacks // Photon Realtime �
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         Debug.Log("OnPlayerLeftRoom: " + otherPlayer.NickName);
+        PhotonNetwork.CurrentRoom.IsOpen = true;
+        HockeyGamemanager.ResetScene();
+        Debug.Log("部屋の状態：" + PhotonNetwork.CurrentRoom);
+        Debug.Log("現在の部屋の人数" + PhotonNetwork.CurrentRoom.PlayerCount);
+        //m_hockeyGamemanager.Test();
+        SpawnPlayer();
     }
 
     /// <summary>マスタークライアントが変わった時</summary>

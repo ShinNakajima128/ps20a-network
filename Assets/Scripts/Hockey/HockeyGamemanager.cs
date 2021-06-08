@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 // Photon 用の名前空間を参照する
 using Photon.Pun;
 using Photon.Realtime;
@@ -27,6 +28,11 @@ public class HockeyGamemanager : MonoBehaviour, IOnEventCallback
 
     void Update()
     {
+        PlayGame();
+    }
+
+    public void PlayGame()
+    {
         // 入室したら処理を始める
         if (PhotonNetwork.InRoom)
         {
@@ -36,7 +42,7 @@ public class HockeyGamemanager : MonoBehaviour, IOnEventCallback
              */
             switch (m_state)
             {
-                
+
                 case HockeyGameState.Initializing:  // 初期化前
                     if (PhotonNetwork.CurrentRoom.PlayerCount > 1)  // 二人揃ったら
                     {
@@ -56,7 +62,6 @@ public class HockeyGamemanager : MonoBehaviour, IOnEventCallback
             }
         }
     }
-
     void IOnEventCallback.OnEvent(EventData photonEvent)
     {
 
@@ -111,6 +116,17 @@ public class HockeyGamemanager : MonoBehaviour, IOnEventCallback
         {
             m_state = HockeyGameState.Player2Serve;
         }
+    }
+
+    public static void ResetScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void Test()
+    {
+        m_state = HockeyGameState.Initializing;
+        Debug.Log("現在の状態：" + m_state);
     }
 }
 
