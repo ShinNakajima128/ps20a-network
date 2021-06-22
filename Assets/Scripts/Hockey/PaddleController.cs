@@ -34,6 +34,20 @@ public class PaddleController : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");
 
         Vector2 dir = (Vector2.up * v).normalized;
-        m_rb.velocity = dir * m_moveSpeed;
+        if (gameObject.transform.position.y < 17.0f && gameObject.transform.position.y > -17.0f)
+        {
+            m_rb.velocity = dir * m_moveSpeed;
+        }
+        else
+        {
+            if (gameObject.transform.position.y > 17.0f)
+            {
+                gameObject.transform.position = new Vector2(gameObject.transform.position.x, 16.9f);
+            }
+            else if (gameObject.transform.position.y < -17.0f)
+            {
+                gameObject.transform.position = new Vector2(gameObject.transform.position.x, -16.9f);
+            }
+        }
     }
 }
