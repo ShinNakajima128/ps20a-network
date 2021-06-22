@@ -13,6 +13,8 @@ public class PackController : MonoBehaviour
     bool m_isStarted = false;
     PhotonView m_view = null;
     Rigidbody2D m_rb = null;
+    /// <summary>最高速度</summary>
+    [SerializeField] float m_maxSpeed = 100f;
 
     void Start()
     {
@@ -28,6 +30,14 @@ public class PackController : MonoBehaviour
             // フラグをたててパックをサーブする
             m_isStarted = true;
             m_rb.velocity = this.transform.right * m_speed;
+        }
+        if (m_rb.velocity.magnitude != 0)
+        {
+            Debug.Log(m_rb.velocity.magnitude);
+            if (m_rb.velocity.magnitude > m_maxSpeed)
+            {
+                m_rb.velocity = m_rb.velocity.normalized * m_maxSpeed;
+            }
         }
     }
 }
